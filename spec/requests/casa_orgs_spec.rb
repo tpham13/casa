@@ -1,23 +1,23 @@
 require "rails_helper"
 
-RSpec.describe "CasaOrgs", type: :request do
+RSpec.describe "CasaOrgs", :disable_bullet, type: :request do
   let(:casa_org) { create(:casa_org) }
   let(:valid_attributes) { {name: "name", display_name: "display_name", address: "address"} }
   let(:logo) { upload_file("#{Rails.root}/spec/fixtures/company_logo.png") }
   let(:invalid_attributes) { {name: nil} }
   let(:casa_case) { create(:casa_case, casa_org: casa_org) }
 
-  describe "as an admin" do
+  describe "as an admin", :disable_bullet do
     before { sign_in create(:casa_admin, casa_org: casa_org) }
 
-    describe "GET /edit" do
+    describe "GET /edit", :disable_bullet do
       it "render a successful response" do
         get edit_casa_org_url(casa_org)
         expect(response).to be_successful
       end
     end
 
-    describe "PATCH /update" do
+    describe "PATCH /update", :disable_bullet do
       context "with valid parameters" do
         it "updates the requested casa_org" do
           patch casa_org_url(casa_org), params: {casa_org: valid_attributes}
@@ -58,10 +58,10 @@ RSpec.describe "CasaOrgs", type: :request do
     end
   end
 
-  describe "as a volunteer" do
+  describe "as a volunteer", :disable_bullet do
     before { sign_in create(:volunteer, casa_org: casa_org) }
 
-    describe "GET /edit" do
+    describe "GET /edit", :disable_bullet do
       it "render a failed response" do
         get edit_casa_org_url(casa_org)
         expect(response).to redirect_to(root_url)

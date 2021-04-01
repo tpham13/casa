@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/case_contacts", type: :request do
+RSpec.describe "/case_contacts", :disable_bullet, type: :request do
   let(:organization) { create(:casa_org) }
   let(:volunteer) { create(:volunteer, casa_org: organization) }
   let(:other_volunteer) { create(:volunteer, casa_org: organization) }
@@ -28,7 +28,7 @@ RSpec.describe "/case_contacts", type: :request do
     let(:admin) { create(:casa_admin) }
     before { sign_in admin }
 
-    describe "GET /edit" do
+    describe "GET /edit", :disable_bullet do
       it "should mark notification as read" do
         case_contact = create(:case_contact)
         followup = create(:followup, case_contact: case_contact, creator: admin)
@@ -46,7 +46,7 @@ RSpec.describe "/case_contacts", type: :request do
   context "logged in as volunteer" do
     before { sign_in volunteer }
 
-    describe "POST /create" do
+    describe "POST /create", :disable_bullet do
       context "with valid parameters" do
         it "does create two new CaseContacts" do
           expect {
@@ -83,7 +83,7 @@ RSpec.describe "/case_contacts", type: :request do
       end
     end
 
-    describe "PATCH /update" do
+    describe "PATCH /update", :disable_bullet do
       let(:case_contact) { create(:case_contact, creator: volunteer, casa_case: casa_case) }
 
       context "with valid parameters" do

@@ -1,15 +1,15 @@
 require "rails_helper"
 
-RSpec.describe ContactType, type: :model do
+RSpec.describe ContactType, :disable_bullet, type: :model do
   let(:contact_type) { create(:contact_type, name: "Name") }
 
-  describe "#create" do
+  describe "#create", :disable_bullet do
     it "does have a name" do
       is_expected.to validate_presence_of(:name)
     end
   end
 
-  describe "#update" do
+  describe "#update", :disable_bullet do
     it "can update to a valid name" do
       contact_type.name = "New name"
       contact_type.save

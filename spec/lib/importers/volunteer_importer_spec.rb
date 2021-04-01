@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe VolunteerImporter do
+RSpec.describe VolunteerImporter, :disable_bullet do
   let!(:import_user) { create(:casa_admin) }
   let(:casa_org_id) { import_user.casa_org.id }
 

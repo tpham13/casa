@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe Rack::Attack do
+RSpec.describe Rack::Attack, :disable_bullet do
   include Rack::Test::Methods
 
   # https://makandracards.com/makandra/46189-how-to-rails-cache-for-individual-rspec-tests
@@ -25,7 +25,7 @@ RSpec.describe Rack::Attack do
   let(:params) { {} }
   let(:limit) { 5 }
 
-  describe "throttle excessive requests by single IP address" do
+  describe "throttle excessive requests by single IP address", :disable_bullet do
     shared_examples "correctly throttles" do
       it "changes the request status to 429 if greater than limit" do
         (limit * 2).times do |i|
@@ -47,7 +47,7 @@ RSpec.describe Rack::Attack do
     end
   end
 
-  describe "localhost is not throttled" do
+  describe "localhost is not throttled", :disable_bullet do
     let(:remote_ip) { "127.0.0.1" }
     let(:path) { "/users/sign_in" }
 
@@ -59,7 +59,7 @@ RSpec.describe Rack::Attack do
     end
   end
 
-  describe "throttle excessive requests for email login by variety of IP addresses" do
+  describe "throttle excessive requests for email login by variety of IP addresses", :disable_bullet do
     shared_examples "correctly throttles" do
       it "changes the request status to 429 when greater than limit" do
         (limit * 2).times do |i|
@@ -136,7 +136,7 @@ RSpec.describe Rack::Attack do
     end
   end
 
-  describe "fail2ban" do
+  describe "fail2ban", :disable_bullet do
     shared_examples "bans successfully" do
       it "changes the request status to 403" do
         head path, params, header

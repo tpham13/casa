@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "case_court_reports/index", type: :system do
+RSpec.describe "case_court_reports/index", :disable_bullet, type: :system do
   let(:volunteer) { create(:volunteer, :with_cases_and_contacts, :with_assigned_supervisor) }
   let(:casa_cases) { CasaCase.actively_assigned_to(volunteer) }
 
@@ -61,7 +61,7 @@ RSpec.describe "case_court_reports/index", type: :system do
       click_button "Generate Report"
     end
 
-    describe "'Generate Report' button" do
+    describe "'Generate Report' button", :disable_bullet do
       it "does not become disabled" do
         expect(page).not_to have_selector "#btnGenerateReport[disabled]"
       end
@@ -73,7 +73,7 @@ RSpec.describe "case_court_reports/index", type: :system do
       end
     end
 
-    describe "'Download Court Report' button" do
+    describe "'Download Court Report' button", :disable_bullet do
       it "does not become visible" do
         options = {text: "Download Court Report", visible: :hidden}
 
@@ -88,7 +88,7 @@ RSpec.describe "case_court_reports/index", type: :system do
     end
   end
 
-  describe "'Case Number' dropdown list", js: true do
+  describe "'Case Number' dropdown list", :disable_bullet, js: true do
     let(:transitioned_case_number) { casa_cases.find(&:has_transitioned?).case_number.to_s }
     let(:transitioned_option_text) { "#{transitioned_case_number} - transition" }
     let(:non_transitioned_case_number) { casa_cases.reject(&:has_transitioned?).first.case_number.to_s }
@@ -122,7 +122,7 @@ RSpec.describe "case_court_reports/index", type: :system do
       click_button "Generate Report"
     end
 
-    describe "'Generate Report' button" do
+    describe "'Generate Report' button", :disable_bullet do
       it "becomes disabled" do
         expect(page).to have_selector "#btnGenerateReport[disabled]"
       end
@@ -134,7 +134,7 @@ RSpec.describe "case_court_reports/index", type: :system do
       end
     end
 
-    describe "'Download Court Report' button" do
+    describe "'Download Court Report' button", :disable_bullet do
       it "becomes visible" do
         options = {text: "Download Court Report", visible: :visible}
 
@@ -150,7 +150,7 @@ RSpec.describe "case_court_reports/index", type: :system do
       end
     end
 
-    describe "when court report status is not 'submitted'" do
+    describe "when court report status is not 'submitted'", :disable_bullet do
       before do
         expect(page).to have_link "Download Court Report"
         casa_case.update!(court_report_status: :in_review)
@@ -179,7 +179,7 @@ RSpec.describe "case_court_reports/index", type: :system do
       end
     end
 
-    describe "when court report status is 'submitted'" do
+    describe "when court report status is 'submitted'", :disable_bullet do
       before do
         expect(page).to have_link "Download Court Report"
         casa_case.update!(court_report_status: :submitted)

@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe CaseContactPolicy::Scope do
-  describe "#resolve" do
+RSpec.describe CaseContactPolicy::Scope, :disable_bullet do
+  describe "#resolve", :disable_bullet do
     it "returns all CaseContacts when user is admin" do
       user = create(:casa_admin)
       all_case_contacts = create_list(:case_contact, 2)

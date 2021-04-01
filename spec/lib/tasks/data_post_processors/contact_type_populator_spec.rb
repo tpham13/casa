@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "populates each existing organization with contact groups and types" do
+RSpec.describe "populates each existing organization with contact groups and types", :disable_bullet do
   before do
     Rake::Task.clear
     Casa::Application.load_tasks

@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe "case_contacts/_followup", type: :view do
+RSpec.describe "case_contacts/_followup", :disable_bullet, type: :view do
   let(:user) { build_stubbed(:casa_admin) }
 
-  describe "follow up icon" do
+  describe "follow up icon", :disable_bullet do
     let(:case_contact) { build_stubbed(:case_contact) }
 
     context "created by volunteer" do

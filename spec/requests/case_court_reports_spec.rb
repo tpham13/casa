@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/case_court_reports", type: :request do
+RSpec.describe "/case_court_reports", :disable_bullet, type: :request do
   let(:volunteer) { create(:volunteer, :with_cases_and_contacts, :with_assigned_supervisor) }
 
   before do
@@ -8,7 +8,7 @@ RSpec.describe "/case_court_reports", type: :request do
   end
 
   # case_court_reports#index
-  describe "GET /case_court_reports" do
+  describe "GET /case_court_reports", :disable_bullet do
     context "as volunteer" do
       it "can view 'Generate Court Report' page" do
         get case_court_reports_path
@@ -18,7 +18,7 @@ RSpec.describe "/case_court_reports", type: :request do
   end
 
   # case_court_reports#show
-  describe "GET /case_court_reports/:id" do
+  describe "GET /case_court_reports/:id", :disable_bullet do
     context "when a valid / existing case is sent" do
       let(:casa_case) { volunteer.casa_cases.first }
 
@@ -63,7 +63,7 @@ RSpec.describe "/case_court_reports", type: :request do
   end
 
   # case_court_reports#generate
-  describe "POST /case_court_reports" do
+  describe "POST /case_court_reports", :disable_bullet do
     before do
       post generate_case_court_reports_path,
         params: {

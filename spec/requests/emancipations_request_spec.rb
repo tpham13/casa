@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "/casa_case/:id/emancipation", type: :request do
+RSpec.describe "/casa_case/:id/emancipation", :disable_bullet, type: :request do
   let(:organization) { create(:casa_org) }
   let(:organization_different) { create(:casa_org) }
   let(:casa_case) { create(:casa_case, casa_org: organization, transition_aged_youth: true) }
 
-  describe "GET /show" do
+  describe "GET /show", :disable_bullet do
     before { sign_in user }
 
     context "when accessing the route" do
@@ -86,7 +86,7 @@ RSpec.describe "/casa_case/:id/emancipation", type: :request do
     end
   end
 
-  describe "POST /save" do
+  describe "POST /save", :disable_bullet do
     before { sign_in user }
 
     let(:category) { create(:emancipation_category) }

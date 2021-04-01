@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CaseContactPolicy do
+RSpec.describe CaseContactPolicy, :disable_bullet do
   subject { described_class }
 
   let(:casa_admin) { create(:casa_admin) }

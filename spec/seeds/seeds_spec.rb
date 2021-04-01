@@ -20,8 +20,8 @@ def empty_ar_classes
   ar_classes.select { |klass| klass.count == 0 }.map(&:name)
 end
 
-RSpec.describe "Seeds" do
-  describe "test development DB" do
+RSpec.describe "Seeds", :disable_bullet do
+  describe "test development DB", :disable_bullet do
     before do
       Rails.application.load_tasks
       allow(Rails).to receive(:env).and_return(ActiveSupport::StringInquirer.new("test"))

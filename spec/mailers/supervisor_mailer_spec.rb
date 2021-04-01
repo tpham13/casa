@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe SupervisorMailer, type: :mailer do
-  describe ".weekly_digest" do
+RSpec.describe SupervisorMailer, :disable_bullet, type: :mailer do
+  describe ".weekly_digest", :disable_bullet do
     let(:supervisor) { build(:supervisor) }
     let(:volunteer) { build(:volunteer, casa_org: supervisor.casa_org, supervisor: supervisor) }
     let(:casa_case) { build(:casa_case, casa_org: supervisor.casa_org) }

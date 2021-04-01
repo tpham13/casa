@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SupervisorPolicy do
+RSpec.describe SupervisorPolicy, :disable_bullet do
   subject { described_class }
 
   let(:casa_admin) { create(:casa_admin) }

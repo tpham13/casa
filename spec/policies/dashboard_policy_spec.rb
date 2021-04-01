@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe DashboardPolicy do
+RSpec.describe DashboardPolicy, :disable_bullet do
   subject { described_class }
 
   let(:user) { create(:user) }

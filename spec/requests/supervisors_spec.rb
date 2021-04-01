@@ -2,7 +2,7 @@
 
 require "rails_helper"
 
-RSpec.describe "/supervisors", type: :request do
+RSpec.describe "/supervisors", :disable_bullet, type: :request do
   let(:admin) { create(:casa_admin) }
   let(:supervisor) { create(:supervisor) }
 
@@ -10,7 +10,7 @@ RSpec.describe "/supervisors", type: :request do
     {supervisor: {email: "newemail@gmail.com", display_name: "New Name"}}
   end
 
-  describe "GET /new" do
+  describe "GET /new", :disable_bullet do
     it "admin can view the new supervisor page" do
       sign_in admin
 
@@ -28,7 +28,7 @@ RSpec.describe "/supervisors", type: :request do
     end
   end
 
-  describe "GET /edit" do
+  describe "GET /edit", :disable_bullet do
     it "admin can view the edit supervisor page" do
       sign_in admin
 
@@ -54,7 +54,7 @@ RSpec.describe "/supervisors", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH /update", :disable_bullet do
     context "while signed in as an admin" do
       before do
         sign_in admin
@@ -128,7 +128,7 @@ RSpec.describe "/supervisors", type: :request do
     end
   end
 
-  describe "POST /create" do
+  describe "POST /create", :disable_bullet do
     it "sends an invitation email" do
       sign_in admin
 

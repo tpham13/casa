@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/casa_cases", type: :request do
+RSpec.describe "/casa_cases", :disable_bullet, type: :request do
   let(:organization) { create(:casa_org) }
   let(:hearing_type) { create(:hearing_type) }
   let(:judge) { create(:judge) }
@@ -12,10 +12,10 @@ RSpec.describe "/casa_cases", type: :request do
 
   before { sign_in user }
 
-  describe "as an admin" do
+  describe "as an admin", :disable_bullet do
     let(:user) { create(:casa_admin, casa_org: organization) }
 
-    describe "GET /index" do
+    describe "GET /index", :disable_bullet do
       it "renders a successful response" do
         create(:casa_case)
         get casa_cases_url
@@ -46,7 +46,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "GET /show" do
+    describe "GET /show", :disable_bullet do
       it "renders a successful response" do
         get casa_case_url(casa_case)
         expect(response).to be_successful
@@ -61,14 +61,14 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "GET /new" do
+    describe "GET /new", :disable_bullet do
       it "renders a successful response" do
         get new_casa_case_url
         expect(response).to be_successful
       end
     end
 
-    describe "GET /edit" do
+    describe "GET /edit", :disable_bullet do
       it "render a successful response" do
         get edit_casa_case_url(casa_case)
         expect(response).to be_successful
@@ -83,7 +83,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "POST /create" do
+    describe "POST /create", :disable_bullet do
       context "with valid parameters" do
         it "creates a new CasaCase" do
           expect { post casa_cases_url, params: {casa_case: valid_attributes} }.to change(
@@ -122,7 +122,7 @@ RSpec.describe "/casa_cases", type: :request do
         )
       end
 
-      describe "invalid request" do
+      describe "invalid request", :disable_bullet do
         context "with invalid parameters" do
           it "does not create a new CasaCase" do
             expect { post casa_cases_url, params: {casa_case: invalid_attributes} }.to change(
@@ -164,7 +164,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /update" do
+    describe "PATCH /update", :disable_bullet do
       let(:new_attributes) {
         {
           case_number: "12345",
@@ -199,7 +199,7 @@ RSpec.describe "/casa_cases", type: :request do
         end
       end
 
-      describe "court mandates" do
+      describe "court mandates", :disable_bullet do
         context "when the user tries to make an existing mandate empty" do
           let(:mandates_updated) do
             {
@@ -246,7 +246,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /casa_cases/:id/deactivate" do
+    describe "PATCH /casa_cases/:id/deactivate", :disable_bullet do
       let(:casa_case) { create(:casa_case, :active, casa_org: organization, case_number: "111") }
       let(:params) { {id: casa_case.id} }
 
@@ -288,7 +288,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /casa_cases/:id/reactivate" do
+    describe "PATCH /casa_cases/:id/reactivate", :disable_bullet do
       let(:casa_case) { create(:casa_case, :inactive, casa_org: organization, case_number: "111") }
       let(:params) { {id: casa_case.id} }
 
@@ -331,11 +331,11 @@ RSpec.describe "/casa_cases", type: :request do
     end
   end
 
-  describe "as a volunteer" do
+  describe "as a volunteer", :disable_bullet do
     let(:user) { create(:volunteer, casa_org: organization) }
     let!(:case_assignment) { create(:case_assignment, volunteer: user, casa_case: casa_case) }
 
-    describe "GET /new" do
+    describe "GET /new", :disable_bullet do
       it "denies access and redirects elsewhere" do
         get new_casa_case_url
 
@@ -344,7 +344,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "GET /edit" do
+    describe "GET /edit", :disable_bullet do
       it "render a successful response" do
         get edit_casa_case_url(casa_case)
         expect(response).to be_successful
@@ -359,7 +359,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /update" do
+    describe "PATCH /update", :disable_bullet do
       let(:new_attributes) {
         {
           case_number: "12345",
@@ -399,7 +399,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "GET /index" do
+    describe "GET /index", :disable_bullet do
       it "shows only cases assigned to user" do
         mine = create(:casa_case, casa_org: organization, case_number: SecureRandom.hex(32))
         other = create(:casa_case, casa_org: organization, case_number: SecureRandom.hex(32))
@@ -414,7 +414,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /casa_cases/:id/deactivate" do
+    describe "PATCH /casa_cases/:id/deactivate", :disable_bullet do
       let(:casa_case) { create(:casa_case, :active, casa_org: organization, case_number: "111") }
       let(:params) { {id: casa_case.id} }
 
@@ -425,7 +425,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /casa_cases/:id/reactivate" do
+    describe "PATCH /casa_cases/:id/reactivate", :disable_bullet do
       let(:casa_case) { create(:casa_case, :inactive, casa_org: organization, case_number: "111") }
       let(:params) { {id: casa_case.id} }
 
@@ -437,17 +437,17 @@ RSpec.describe "/casa_cases", type: :request do
     end
   end
 
-  describe "as a supervisor" do
+  describe "as a supervisor", :disable_bullet do
     let(:user) { create(:supervisor, casa_org: organization) }
 
-    describe "GET /new" do
+    describe "GET /new", :disable_bullet do
       it "renders a successful response" do
         get new_casa_case_url
         expect(response).to be_successful
       end
     end
 
-    describe "GET /edit" do
+    describe "GET /edit", :disable_bullet do
       it "render a successful response" do
         get edit_casa_case_url(casa_case)
         expect(response).to be_successful
@@ -462,7 +462,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /update" do
+    describe "PATCH /update", :disable_bullet do
       let(:new_attributes) { {case_number: "12345", court_report_status: :completed, case_court_mandates_attributes: mandates_attributes} }
 
       context "with valid parameters" do
@@ -493,7 +493,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "GET /index" do
+    describe "GET /index", :disable_bullet do
       it "renders a successful response" do
         create(:casa_case)
         get casa_cases_url
@@ -501,7 +501,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /casa_cases/:id/deactivate" do
+    describe "PATCH /casa_cases/:id/deactivate", :disable_bullet do
       let(:casa_case) { create(:casa_case, :active, casa_org: organization, case_number: "111") }
       let(:params) { {id: casa_case.id} }
 
@@ -512,7 +512,7 @@ RSpec.describe "/casa_cases", type: :request do
       end
     end
 
-    describe "PATCH /casa_cases/:id/reactivate" do
+    describe "PATCH /casa_cases/:id/reactivate", :disable_bullet do
       let(:casa_case) { create(:casa_case, :inactive, casa_org: organization, case_number: "111") }
       let(:params) { {id: casa_case.id} }
 

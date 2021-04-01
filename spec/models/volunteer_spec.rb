@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe Volunteer, type: :model do
-  describe ".email_court_report_reminder" do
+RSpec.describe Volunteer, :disable_bullet, type: :model do
+  describe ".email_court_report_reminder", :disable_bullet do
     let!(:casa_org) { create(:casa_org) }
 
     # Should send email for this case
@@ -36,7 +36,7 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#activate" do
+  describe "#activate", :disable_bullet do
     let(:volunteer) { create(:volunteer, :inactive) }
 
     it "activates the volunteer" do
@@ -47,7 +47,7 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#deactivate" do
+  describe "#deactivate", :disable_bullet do
     let(:volunteer) { create(:volunteer) }
 
     it "deactivates the volunteer" do
@@ -70,7 +70,7 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#display_name" do
+  describe "#display_name", :disable_bullet do
     it "allows user to input dangerous values" do
       volunteer = create(:volunteer)
       UserInputHelpers::DANGEROUS_STRINGS.each do |dangerous_string|
@@ -82,7 +82,7 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#has_supervisor?" do
+  describe "#has_supervisor?", :disable_bullet do
     context "when no supervisor_volunteer record" do
       let(:volunteer) { create(:volunteer) }
 
@@ -110,7 +110,7 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#made_contact_with_all_cases_in_days?" do
+  describe "#made_contact_with_all_cases_in_days?", :disable_bullet do
     let(:volunteer) { create(:volunteer) }
     let(:casa_case) { create(:casa_case, casa_org: volunteer.casa_org) }
 
@@ -183,7 +183,7 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#supervised_by?" do
+  describe "#supervised_by?", :disable_bullet do
     it "is supervised by the currently active supervisor" do
       supervisor = create :supervisor
       volunteer = create :volunteer, supervisor: supervisor
@@ -210,13 +210,13 @@ RSpec.describe Volunteer, type: :model do
     end
   end
 
-  describe "#role" do
+  describe "#role", :disable_bullet do
     subject(:volunteer) { create :volunteer }
 
     it { expect(volunteer.role).to eq "Volunteer" }
   end
 
-  describe "#with_no_supervisor" do
+  describe "#with_no_supervisor", :disable_bullet do
     subject { Volunteer.with_no_supervisor(casa_org) }
 
     let(:casa_org) { create(:casa_org) }

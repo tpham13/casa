@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/judges", type: :request do
-  describe "GET /judges/new" do
+RSpec.describe "/judges", :disable_bullet, type: :request do
+  describe "GET /judges/new", :disable_bullet do
     context "logged in as admin user" do
       it "can successfully access a judge create page" do
         sign_in_as_admin
@@ -32,7 +32,7 @@ RSpec.describe "/judges", type: :request do
     end
   end
 
-  describe "POST /judges" do
+  describe "POST /judges", :disable_bullet do
     let(:params) { {judge: {name: "Joe Judge", active: true}} }
 
     context "logged in as admin user" do
@@ -74,7 +74,7 @@ RSpec.describe "/judges", type: :request do
     end
   end
 
-  describe "GET /judges/:id/edit" do
+  describe "GET /judges/:id/edit", :disable_bullet do
     let(:judge) { create(:judge) }
 
     context "logged in as admin user" do
@@ -107,7 +107,7 @@ RSpec.describe "/judges", type: :request do
     end
   end
 
-  describe "PUT /judges/:id" do
+  describe "PUT /judges/:id", :disable_bullet do
     let(:judge) { create(:judge) }
     let(:params) { {judge: {name: "New Name", judge_id: judge.id, active: false}} }
 

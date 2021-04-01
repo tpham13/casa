@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/users", type: :request do
-  describe "GET /edit" do
+RSpec.describe "/users", :disable_bullet, type: :request do
+  describe "GET /edit", :disable_bullet do
     context "with a volunteer signed in" do
       it "renders a successful response" do
         sign_in create(:volunteer)
@@ -23,7 +23,7 @@ RSpec.describe "/users", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH /update", :disable_bullet do
     it "updates the user" do
       volunteer = create(:volunteer)
       sign_in volunteer

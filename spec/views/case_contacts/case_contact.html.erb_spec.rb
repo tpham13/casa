@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "case_contacts/case_contact", type: :view do
+RSpec.describe "case_contacts/case_contact", :disable_bullet, type: :view do
   let(:user) { build_stubbed(:casa_admin) }
 
   before do

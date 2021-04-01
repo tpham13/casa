@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe UserPolicy::Scope do
-  describe "#resolve" do
+RSpec.describe UserPolicy::Scope, :disable_bullet do
+  describe "#resolve", :disable_bullet do
     it "returns all Users when user is admin" do
       admin = create(:casa_admin)
 

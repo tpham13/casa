@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe FileImporter do
+RSpec.describe FileImporter, :disable_bullet do
   let!(:import_user) { create(:casa_admin) }
   let(:import_file_path) { Rails.root.join("spec", "fixtures", "generic.csv") }
   let(:file_importer) { FileImporter.new(import_file_path, import_user.casa_org.id, "something", ["header"]) }
 
-  describe "import" do
+  describe "import", :disable_bullet do
     it "assumes headers" do
       file_importer.import { |_f| true }
       expect(file_importer.number_imported).to eq(2)

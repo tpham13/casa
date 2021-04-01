@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CaseCourtMandate, type: :model do
+RSpec.describe CaseCourtMandate, :disable_bullet, type: :model do
   subject { build(:case_court_mandate) }
 
   it { is_expected.to belong_to(:casa_case) }

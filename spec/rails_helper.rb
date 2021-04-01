@@ -55,4 +55,19 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
 
   config.disable_monkey_patching!
+
+  if Bullet.enable?
+    config.before do
+      Bullet.start_request
+    end
+    config.after do
+      Bullet.perform_out_of_channel_notifications if Bullet.notification?
+      Bullet.end_request
+    end
+    config.around :each, :disable_bullet do |example|
+      Bullet.raise = false
+      example.run
+      Bullet.raise = true
+    end
+  end
 end

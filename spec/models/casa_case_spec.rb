@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CasaCase, type: :model do
+RSpec.describe CasaCase, :disable_bullet, type: :model do
   subject { build(:casa_case) }
 
   it { is_expected.to have_many(:case_assignments).dependent(:destroy) }
@@ -16,7 +16,7 @@ RSpec.describe CasaCase, type: :model do
   it { is_expected.to have_many(:case_court_mandates).dependent(:destroy) }
   it { is_expected.to have_many(:volunteers).through(:case_assignments) }
 
-  describe ".ordered" do
+  describe ".ordered", :disable_bullet do
     it "orders the casa cases by updated at date" do
       very_old_casa_case = create(:casa_case, updated_at: 5.days.ago)
       old_casa_case = create(:casa_case, updated_at: 1.day.ago)
@@ -28,7 +28,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "#should_transition" do
+  describe "#should_transition", :disable_bullet do
     it "returns only youth who should have transitioned but have not" do
       not_transitioned_13_yo = create(:casa_case,
         birth_month_year_youth: Date.current - 13.years,
@@ -49,7 +49,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe ".actively_assigned_to" do
+  describe ".actively_assigned_to", :disable_bullet do
     it "only returns cases actively assigned to a volunteer" do
       current_user = create(:volunteer)
       inactive_case = create(:casa_case, casa_org: current_user.casa_org)
@@ -72,7 +72,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe ".not_assigned" do
+  describe ".not_assigned", :disable_bullet do
     it "only returns cases NOT actively assigned to ANY volunteer" do
       current_user = create(:volunteer)
 
@@ -98,7 +98,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "#court_report_status=" do
+  describe "#court_report_status=", :disable_bullet do
     let(:casa_case) { build(:casa_case) }
     subject { casa_case.court_report_status = court_report_status }
 
@@ -156,7 +156,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe ".available_for_volunteer" do
+  describe ".available_for_volunteer", :disable_bullet do
     let(:casa_org) { create(:casa_org) }
     let!(:casa_case1) { create(:casa_case, :with_case_assignments, case_number: "foo", casa_org: casa_org) }
     let!(:casa_case2) { create(:casa_case, :with_case_assignments, case_number: "bar", casa_org: casa_org) }
@@ -239,7 +239,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "#update_cleaning_contact_types" do
+  describe "#update_cleaning_contact_types", :disable_bullet do
     it "cleans up contact types before saving" do
       group = create(:contact_type_group)
       type1 = create(:contact_type, contact_type_group: group)
@@ -257,7 +257,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "#clear_court_dates" do
+  describe "#clear_court_dates", :disable_bullet do
     context "when court date has passed" do
       it "clears court date" do
         casa_case = create(:casa_case, court_date: "2020-09-13 02:11:58")
@@ -282,7 +282,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "#active_case_assignments" do
+  describe "#active_case_assignments", :disable_bullet do
     it "only includes active assignments" do
       casa_org = create(:casa_org)
       casa_case = create(:casa_case, casa_org: casa_org)
@@ -295,7 +295,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "#assigned_volunteers" do
+  describe "#assigned_volunteers", :disable_bullet do
     let(:casa_org) { create(:casa_org) }
     let(:casa_case) { create(:casa_case, casa_org: casa_org) }
     let(:volunteer1) { create(:volunteer, casa_org: casa_org) }
@@ -318,7 +318,7 @@ RSpec.describe CasaCase, type: :model do
     end
   end
 
-  describe "report submission" do
+  describe "report submission", :disable_bullet do
     # Creating a case whith a status other than not_submitted and a nil submission date
     it "rejects cases with a court report status, but no submission date" do
       bad_case = create(:casa_case)

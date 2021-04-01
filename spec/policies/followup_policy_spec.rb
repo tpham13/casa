@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe FollowupPolicy do
+RSpec.describe FollowupPolicy, :disable_bullet do
   subject { described_class }
 
   let(:casa_admin) { build_stubbed(:casa_admin) }

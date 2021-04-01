@@ -1,7 +1,7 @@
 require "rails_helper"
 require "csv"
-RSpec.describe CaseContactReport, type: :model do
-  describe "#generate_headers" do
+RSpec.describe CaseContactReport, :disable_bullet, type: :model do
+  describe "#generate_headers", :disable_bullet do
     it "matches the length of row data" do
       create(:case_contact)
       csv = described_class.new.to_csv
@@ -30,7 +30,7 @@ RSpec.describe CaseContactReport, type: :model do
     end
   end
 
-  describe "CSV body serialization" do
+  describe "CSV body serialization", :disable_bullet do
     let!(:long_case_contact) { create(:case_contact, :long_note) }
     let!(:multi_line_case_contact) { create(:case_contact, :multi_line_note, casa_case: long_case_contact.casa_case) }
 
@@ -42,8 +42,8 @@ RSpec.describe CaseContactReport, type: :model do
     end
   end
 
-  describe "filter behavior" do
-    describe "casa organization" do
+  describe "filter behavior", :disable_bullet do
+    describe "casa organization", :disable_bullet do
       it "includes case contacts from current org" do
         casa_org = create(:casa_org)
         casa_case = create(:casa_case, casa_org: casa_org)
@@ -90,7 +90,7 @@ RSpec.describe CaseContactReport, type: :model do
     end
 
     context "when result is not empty" do
-      describe "occured at range filter" do
+      describe "occured at range filter", :disable_bullet do
         it "uses date range if provided" do
           create(:case_contact, {occurred_at: 20.days.ago})
           create(:case_contact, {occurred_at: 100.days.ago})
@@ -146,7 +146,7 @@ RSpec.describe CaseContactReport, type: :model do
       end
     end
 
-    describe "case contact behavior" do
+    describe "case contact behavior", :disable_bullet do
       before(:each) do
         create(:case_contact, {contact_made: true})
         create(:case_contact, {contact_made: false})
@@ -171,7 +171,7 @@ RSpec.describe CaseContactReport, type: :model do
       end
     end
 
-    describe "has transitioned behavior" do
+    describe "has transitioned behavior", :disable_bullet do
       let(:case_case_1) { create(:casa_case, transition_aged_youth: false) }
       let(:case_case_2) { create(:casa_case, transition_aged_youth: true) }
 
@@ -199,7 +199,7 @@ RSpec.describe CaseContactReport, type: :model do
       end
     end
 
-    describe "wanting driving reimbursement functionality" do
+    describe "wanting driving reimbursement functionality", :disable_bullet do
       before(:each) do
         create(:case_contact, {miles_driven: 50, want_driving_reimbursement: true})
         create(:case_contact, {miles_driven: 50, want_driving_reimbursement: false})
@@ -224,7 +224,7 @@ RSpec.describe CaseContactReport, type: :model do
       end
     end
 
-    describe "contact type filter functionality" do
+    describe "contact type filter functionality", :disable_bullet do
       it "returns only the case contacts that include the case contact" do
         casa_org = create(:casa_org)
         supervisor = create(:supervisor, casa_org: casa_org)
@@ -244,7 +244,7 @@ RSpec.describe CaseContactReport, type: :model do
       end
     end
 
-    describe "contact type group filter functionality" do
+    describe "contact type group filter functionality", :disable_bullet do
       before do
         casa_org = create(:casa_org)
         supervisor = create(:supervisor, casa_org: casa_org)
@@ -305,8 +305,8 @@ RSpec.describe CaseContactReport, type: :model do
       end
     end
 
-    describe "multiple filter behavior" do
-      it "only returns records that occured less than 30 days ago, the youth has transitioned, and the contact type was either court or therapist" do
+    describe "multiple filter behavior", :disable_bullet do
+      it "only returns records that occured less than 30 days ago, the youth has transitioned, and the contact type was either court or therapist", :disable_bullet do
         court = create(:contact_type, name: "Court")
         school = create(:contact_type, name: "School")
         therapist = create(:contact_type, name: "Therapist")

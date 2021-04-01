@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/hearing_types", type: :request do
-  describe "GET /hearing_types/new" do
+RSpec.describe "/hearing_types", :disable_bullet, type: :request do
+  describe "GET /hearing_types/new", :disable_bullet do
     context "when logged in as admin user" do
       it "allows access to hearing type create page" do
         sign_in_as_admin
@@ -32,7 +32,7 @@ RSpec.describe "/hearing_types", type: :request do
     end
   end
 
-  describe "POST /hearing_types" do
+  describe "POST /hearing_types", :disable_bullet do
     let(:params) { {hearing_type: {name: "New Hearing", active: true}} }
 
     context "when logged in as admin user" do
@@ -73,7 +73,7 @@ RSpec.describe "/hearing_types", type: :request do
     end
   end
 
-  describe "GET /hearing_types/:id/edit" do
+  describe "GET /hearing_types/:id/edit", :disable_bullet do
     context "when logged in as admin user" do
       it "allows access to hearing type edit page" do
         sign_in_as_admin
@@ -104,7 +104,7 @@ RSpec.describe "/hearing_types", type: :request do
     end
   end
 
-  describe "PUT /hearing_types/:id" do
+  describe "PUT /hearing_types/:id", :disable_bullet do
     let(:casa_org) { create(:casa_org) }
     let(:params) { {hearing_type: {name: "New Name", active: true}} }
 

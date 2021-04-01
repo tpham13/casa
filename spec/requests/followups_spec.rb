@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "/followups", type: :request do
+RSpec.describe "/followups", :disable_bullet, type: :request do
   let(:admin) { create(:casa_admin) }
   let(:volunteer) { create(:volunteer) }
   let(:contact) { create(:case_contact) }
 
-  describe "PATCH /resolve" do
+  describe "PATCH /resolve", :disable_bullet do
     context "followup exists" do
       let!(:followup) { create(:followup, case_contact: contact) }
 
@@ -53,7 +53,7 @@ RSpec.describe "/followups", type: :request do
     end
   end
 
-  describe "POST /create" do
+  describe "POST /create", :disable_bullet do
     context "with valid parameters" do
       context "no followup exists yet" do
         it "creates a followup" do

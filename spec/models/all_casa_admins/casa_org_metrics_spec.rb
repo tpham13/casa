@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe AllCasaAdmins::CasaOrgMetrics, type: :model do
+RSpec.describe AllCasaAdmins::CasaOrgMetrics, :disable_bullet, type: :model do
   let(:organization) { create :casa_org }
   let(:user) { create(:all_casa_admin) }
 
-  describe "#metrics" do
+  describe "#metrics", :disable_bullet do
     subject { described_class.new(organization).metrics }
     context "minimal data" do
       it "shows stats" do

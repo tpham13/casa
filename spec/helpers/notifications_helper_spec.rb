@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe NotificationsHelper do
-  describe "#notification_row_class" do
+RSpec.describe NotificationsHelper, :disable_bullet do
+  describe "#notification_row_class", :disable_bullet do
     context "notification has been read" do
       it "returns 'bg-light text-muted'" do
         notification = build_stubbed(:notification, read_at: Time.current)
@@ -17,7 +17,7 @@ RSpec.describe NotificationsHelper do
     end
   end
 
-  describe "#notification_icon" do
+  describe "#notification_icon", :disable_bullet do
     context "notification has been read" do
       it "is blank" do
         notification = build_stubbed(:notification, read_at: Time.current)

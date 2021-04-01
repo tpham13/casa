@@ -1,10 +1,10 @@
 require "rails_helper"
 
-RSpec.describe "/volunteers", type: :request do
+RSpec.describe "/volunteers", :disable_bullet, type: :request do
   let(:admin) { create(:casa_admin) }
   let(:volunteer) { create(:volunteer) }
 
-  describe "GET /index" do
+  describe "GET /index", :disable_bullet do
     it "renders a successful response" do
       sign_in admin
 
@@ -13,7 +13,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "POST /datatable" do
+  describe "POST /datatable", :disable_bullet do
     let(:data) { {recordsTotal: 51, recordsFiltered: 10, data: 10.times.map { {} }} }
 
     before do
@@ -35,7 +35,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "GET /new" do
+  describe "GET /new", :disable_bullet do
     it "renders a successful response only for admin user" do
       sign_in admin
 
@@ -44,7 +44,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "GET /edit" do
+  describe "GET /edit", :disable_bullet do
     it "render a successful response" do
       sign_in admin
 
@@ -54,7 +54,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "POST /create" do
+  describe "POST /create", :disable_bullet do
     before do
       sign_in admin
     end
@@ -112,7 +112,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH /update", :disable_bullet do
     before { sign_in admin }
 
     context "with valid params" do
@@ -157,7 +157,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "PATCH /activate" do
+  describe "PATCH /activate", :disable_bullet do
     let(:volunteer) { create(:volunteer, :inactive) }
 
     it "activates an inactive volunteer" do
@@ -178,7 +178,7 @@ RSpec.describe "/volunteers", type: :request do
     end
   end
 
-  describe "PATCH /deactivate" do
+  describe "PATCH /deactivate", :disable_bullet do
     it "deactivates an active volunteer" do
       sign_in admin
 

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe SupervisorVolunteer do
+RSpec.describe SupervisorVolunteer, :disable_bullet do
   let(:casa_org_1) { create(:casa_org) }
   let(:casa_org_2) { create(:casa_org) }
   let(:volunteer_1) { create(:volunteer, casa_org: casa_org_1) }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ImportPolicy do
+RSpec.describe ImportPolicy, :disable_bullet do
   subject { described_class }
 
   let(:casa_admin) { build_stubbed(:casa_admin) }

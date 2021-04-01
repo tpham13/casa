@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe ContactTypePolicy do
+RSpec.describe ContactTypePolicy, :disable_bullet do
   subject { described_class }
 
   let(:casa_admin) { build_stubbed(:casa_admin) }

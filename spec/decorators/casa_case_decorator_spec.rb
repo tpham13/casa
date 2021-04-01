@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe CasaCaseDecorator do
-  describe "#court_report_submission" do
+RSpec.describe CasaCaseDecorator, :disable_bullet do
+  describe "#court_report_submission", :disable_bullet do
     subject { casa_case.decorate.court_report_submission }
     let(:casa_case) { build(:casa_case, court_report_status: court_report_status) }
 
@@ -30,7 +30,7 @@ RSpec.describe CasaCaseDecorator do
     end
   end
 
-  describe "#court_report_submission" do
+  describe "#court_report_submission", :disable_bullet do
     subject { casa_case.decorate.court_report_submitted_date }
     let(:submitted_time) { Time.parse("Sun Nov 08 11:06:20 2020") }
     let(:casa_case) { build(:casa_case, court_report_submitted_at: submitted_time) }
@@ -44,7 +44,7 @@ RSpec.describe CasaCaseDecorator do
     end
   end
 
-  describe "#formatted_updated_at" do
+  describe "#formatted_updated_at", :disable_bullet do
     subject { casa_case.decorate.formatted_updated_at }
     let(:updated_at_time) { Time.parse("Wed Dec 9 12:51:20 2020") }
     let(:casa_case) { build(:casa_case, updated_at: updated_at_time) }
@@ -52,7 +52,7 @@ RSpec.describe CasaCaseDecorator do
     it { is_expected.to eq "12-09-2020" }
   end
 
-  describe "#transition_age_youth" do
+  describe "#transition_age_youth", :disable_bullet do
     it "returns transition age youth status with icon if transition age youth" do
       casa_case = build(:casa_case, transition_aged_youth: true)
       expect(casa_case.decorate.transition_aged_youth)
@@ -66,7 +66,7 @@ RSpec.describe CasaCaseDecorator do
     end
   end
 
-  describe "#transition_age_youth_icon" do
+  describe "#transition_age_youth_icon", :disable_bullet do
     it "returns transition age youth icon if transition age youth" do
       casa_case = build(:casa_case, transition_aged_youth: true)
       expect(casa_case.decorate.transition_aged_youth_icon)

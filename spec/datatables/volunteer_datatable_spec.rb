@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "VolunteerDatatable" do
+RSpec.describe "VolunteerDatatable", :disable_bullet do
   let(:org) { CasaOrg.first }
   let(:supervisors) { Supervisor.all }
   let(:assigned_volunteers) { Volunteer.joins(:supervisor) }
@@ -54,7 +54,7 @@ RSpec.describe "VolunteerDatatable" do
     DatabaseCleaner.clean
   end
 
-  describe "order by" do
+  describe "order by", :disable_bullet do
     let(:values) { subject[:data] }
 
     let(:check_attr_equality) do
@@ -75,7 +75,7 @@ RSpec.describe "VolunteerDatatable" do
       }
     end
 
-    describe "display_name" do
+    describe "display_name", :disable_bullet do
       let(:order_by) { "display_name" }
       let(:sorted_models) { assigned_volunteers.order :display_name }
 
@@ -94,7 +94,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "email" do
+    describe "email", :disable_bullet do
       let(:order_by) { "email" }
       let(:sorted_models) { assigned_volunteers.order :email }
 
@@ -113,7 +113,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "supervisor_name" do
+    describe "supervisor_name", :disable_bullet do
       let(:order_by) { "supervisor_name" }
       let(:sorted_models) { assigned_volunteers.sort_by { |v| v.supervisor.display_name } }
 
@@ -137,7 +137,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "active" do
+    describe "active", :disable_bullet do
       let(:order_by) { "active" }
       let(:sorted_models) { assigned_volunteers.order :active, :id }
 
@@ -161,7 +161,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "has_transition_aged_youth_cases" do
+    describe "has_transition_aged_youth_cases", :disable_bullet do
       let(:order_by) { "has_transition_aged_youth_cases" }
       let(:transition_aged_youth_bool_to_int) do
         lambda { |volunteer|
@@ -190,7 +190,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "most_recent_contact_occurred_at" do
+    describe "most_recent_contact_occurred_at", :disable_bullet do
       let(:order_by) { "most_recent_contact_occurred_at" }
       let(:sorted_models) do
         assigned_volunteers.order(:id).sort_by { |v| v.case_contacts.maximum :occurred_at }
@@ -215,7 +215,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "contacts_made_in_past_days" do
+    describe "contacts_made_in_past_days", :disable_bullet do
       let(:order_by) { "contacts_made_in_past_days" }
       let(:volunteer1) { assigned_volunteers.first }
       let(:casa_case1) { volunteer1.casa_cases.first }
@@ -263,30 +263,30 @@ RSpec.describe "VolunteerDatatable" do
     end
   end
 
-  describe "search" do
+  describe "search", :disable_bullet do
     let(:volunteer) { assigned_volunteers.first }
     let(:search_term) { volunteer.display_name }
 
-    describe "recordsTotal" do
+    describe "recordsTotal", :disable_bullet do
       it "includes all volunteers" do
         expect(subject[:recordsTotal]).to eq org.volunteers.count
       end
     end
 
-    describe "recordsFiltered" do
+    describe "recordsFiltered", :disable_bullet do
       it "includes filtered volunteers" do
         expect(subject[:recordsFiltered]).to eq 1
       end
     end
 
-    describe "display_name" do
+    describe "display_name", :disable_bullet do
       it "is successful" do
         expect(subject[:data].length).to eq 1
         expect(subject[:data].first[:id]).to eq volunteer.id.to_s
       end
     end
 
-    describe "email" do
+    describe "email", :disable_bullet do
       let(:search_term) { volunteer.email }
 
       it "is successful" do
@@ -295,7 +295,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "supervisor_name" do
+    describe "supervisor_name", :disable_bullet do
       let(:supervisor) { volunteer.supervisor }
       let(:search_term) { supervisor.display_name }
       let(:volunteers) { supervisor.volunteers }
@@ -306,7 +306,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "case_numbers" do
+    describe "case_numbers", :disable_bullet do
       let(:casa_case) { volunteer.casa_cases.first }
       let(:case_number) { casa_case.case_number }
       let(:search_term) { case_number }
@@ -321,8 +321,8 @@ RSpec.describe "VolunteerDatatable" do
     end
   end
 
-  describe "filter" do
-    describe "supervisor" do
+  describe "filter", :disable_bullet do
+    describe "supervisor", :disable_bullet do
       context "when unassigned excluded" do
         it "is successful" do
           expect(subject[:recordsTotal]).to eq Volunteer.count
@@ -349,7 +349,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "active" do
+    describe "active", :disable_bullet do
       before { assigned_volunteers.limit(3).update_all active: "false" }
 
       context "when active" do
@@ -389,7 +389,7 @@ RSpec.describe "VolunteerDatatable" do
       end
     end
 
-    describe "transition_aged_youth" do
+    describe "transition_aged_youth", :disable_bullet do
       context "when yes" do
         before { additional_filters[:transition_aged_youth] = %w[true] }
 
@@ -428,7 +428,7 @@ RSpec.describe "VolunteerDatatable" do
     end
   end
 
-  describe "pagination" do
+  describe "pagination", :disable_bullet do
     let(:page) { 2 }
     let(:per_page) { 5 }
 
@@ -436,13 +436,13 @@ RSpec.describe "VolunteerDatatable" do
       expect(subject[:data].length).to eq assigned_volunteers.count - 5
     end
 
-    describe "recordsTotal" do
+    describe "recordsTotal", :disable_bullet do
       it "includes all volunteers" do
         expect(subject[:recordsTotal]).to eq org.volunteers.count
       end
     end
 
-    describe "recordsFiltered" do
+    describe "recordsFiltered", :disable_bullet do
       it "includes all filtered volunteers" do
         expect(subject[:recordsFiltered]).to eq assigned_volunteers.count
       end

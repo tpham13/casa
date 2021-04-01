@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CaseContactsController, type: :controller do
+RSpec.describe CaseContactsController, :disable_bullet, type: :controller do
   let(:organization) { create(:casa_org) }
   let(:volunteer) { create(:volunteer, :with_casa_cases, casa_org: organization) }
   let(:case_id) { volunteer.casa_cases.first.id }
@@ -20,7 +20,7 @@ RSpec.describe CaseContactsController, type: :controller do
     allow(controller).to receive(:current_user).and_return(volunteer)
   end
 
-  describe "GET new" do
+  describe "GET new", :disable_bullet do
     context "when the case has specific contact types assigned" do
       before do
         casa_case = volunteer.casa_cases.first

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/dashboard", type: :request do
+RSpec.describe "/dashboard", :disable_bullet, type: :request do
   let(:organization) { create(:casa_org) }
 
   context "as a volunteer" do
@@ -10,7 +10,7 @@ RSpec.describe "/dashboard", type: :request do
       sign_in volunteer
     end
 
-    describe "GET /show" do
+    describe "GET /show", :disable_bullet do
       it "renders a successful response" do
         get root_url
 
@@ -54,7 +54,7 @@ RSpec.describe "/dashboard", type: :request do
       sign_in admin
     end
 
-    describe "GET /show" do
+    describe "GET /show", :disable_bullet do
       it "renders a successful response" do
         get root_url
 

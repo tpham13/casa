@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe ApplicationHelper, type: :helper do
-  describe "#page_header" do
+RSpec.describe ApplicationHelper, :disable_bullet, type: :helper do
+  describe "#page_header", :disable_bullet do
     it "displays the header when user is logged in" do
       current_organization = build_stubbed(:casa_org)
       user = build_stubbed(:user, casa_org: current_organization)
@@ -20,7 +20,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe "#session_link" do
+  describe "#session_link", :disable_bullet do
     it "links to the sign_out page when user is signed in" do
       allow(helper).to receive(:user_signed_in?).and_return(true)
 
@@ -41,7 +41,7 @@ RSpec.describe ApplicationHelper, type: :helper do
     end
   end
 
-  describe "#og_tag" do
+  describe "#og_tag", :disable_bullet do
     subject { helper.og_tag(:title, content: "Website Title") }
 
     it { is_expected.to eql('<meta property="og:title" content="Website Title">') }

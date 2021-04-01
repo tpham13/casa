@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "volunteers/edit", type: :system do
+RSpec.describe "volunteers/edit", :disable_bullet, type: :system do
   let(:organization) { create(:casa_org) }
   let(:admin) { create(:casa_admin, casa_org_id: organization.id) }
   let(:volunteer) { create(:volunteer, casa_org_id: organization.id) }
 
-  describe "updating volunteer personal data" do
+  describe "updating volunteer personal data", :disable_bullet do
     before do
       sign_in admin
       visit edit_volunteer_path(volunteer)
@@ -165,7 +165,7 @@ RSpec.describe "volunteers/edit", type: :system do
     end
   end
 
-  describe "inactive case visibility" do
+  describe "inactive case visibility", :disable_bullet do
     let!(:active_casa_case) { create(:casa_case, casa_org: organization, case_number: "ACTIVE") }
     let!(:inactive_casa_case) { create(:casa_case, casa_org: organization, active: false, case_number: "INACTIVE") }
     let!(:volunteer) { create(:volunteer, display_name: "Awesome Volunteer", casa_org: organization) }
@@ -180,7 +180,7 @@ RSpec.describe "volunteers/edit", type: :system do
     end
   end
 
-  describe "resend invite" do
+  describe "resend invite", :disable_bullet do
     let(:supervisor) { create(:supervisor, casa_org: organization) }
 
     it "allows a supervisor resend invitation to a volunteer" do

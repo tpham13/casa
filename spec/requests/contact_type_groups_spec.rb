@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/contact_type_groups", type: :request do
-  describe "GET /contact_type_groups/new" do
+RSpec.describe "/contact_type_groups", :disable_bullet, type: :request do
+  describe "GET /contact_type_groups/new", :disable_bullet do
     context "logged in as admin user" do
       it "can successfully access a contact type group create page" do
         sign_in_as_admin
@@ -32,7 +32,7 @@ RSpec.describe "/contact_type_groups", type: :request do
     end
   end
 
-  describe "POST /contact_type_groups" do
+  describe "POST /contact_type_groups", :disable_bullet do
     let(:params) { {contact_type_group: {name: "New Group", active: true}} }
 
     context "logged in as admin user" do
@@ -74,7 +74,7 @@ RSpec.describe "/contact_type_groups", type: :request do
     end
   end
 
-  describe "GET /contact_type_groups/:id/edit" do
+  describe "GET /contact_type_groups/:id/edit", :disable_bullet do
     context "logged in as admin user" do
       it "can successfully access a contact type group edit page" do
         sign_in_as_admin
@@ -105,7 +105,7 @@ RSpec.describe "/contact_type_groups", type: :request do
     end
   end
 
-  describe "PUT /contact_type_groups/:id" do
+  describe "PUT /contact_type_groups/:id", :disable_bullet do
     let(:params) { {contact_type_group: {name: "New Group Name", active: false}} }
 
     context "logged in as admin user" do

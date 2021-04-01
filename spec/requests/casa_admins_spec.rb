@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/casa_admins", type: :request do
-  describe "GET /casa_admins/:id/edit" do
+RSpec.describe "/casa_admins", :disable_bullet, type: :request do
+  describe "GET /casa_admins/:id/edit", :disable_bullet do
     context "logged in as admin user" do
       it "can successfully access a casa admin edit page" do
         sign_in_as_admin
@@ -32,7 +32,7 @@ RSpec.describe "/casa_admins", type: :request do
     end
   end
 
-  describe "PUT /casa_admins/:id" do
+  describe "PUT /casa_admins/:id", :disable_bullet do
     context "logged in as admin user" do
       it "can successfully update a casa admin user" do
         sign_in_as_admin
@@ -86,7 +86,7 @@ RSpec.describe "/casa_admins", type: :request do
     end
   end
 
-  describe "PATCH /activate" do
+  describe "PATCH /activate", :disable_bullet do
     let(:casa_admin) { create(:casa_admin, active: false) }
 
     it "activates an inactive casa_admin" do
@@ -129,7 +129,7 @@ RSpec.describe "/casa_admins", type: :request do
     end
   end
 
-  describe "PATCH /casa_admins/:id/deactivate" do
+  describe "PATCH /casa_admins/:id/deactivate", :disable_bullet do
     let(:casa_admin) { create(:casa_admin, active: true) }
 
     context "logged in as admin user" do

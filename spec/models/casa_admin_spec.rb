@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe CasaAdmin, type: :model do
-  describe "#deactivate" do
+RSpec.describe CasaAdmin, :disable_bullet, type: :model do
+  describe "#deactivate", :disable_bullet do
     let(:casa_admin) { create(:casa_admin) }
 
     it "deactivates the casa admin" do
@@ -21,7 +21,7 @@ RSpec.describe CasaAdmin, type: :model do
     end
   end
 
-  describe "#role" do
+  describe "#role", :disable_bullet do
     subject(:admin) { create :casa_admin }
 
     it { expect(admin.role).to eq "Casa Admin" }

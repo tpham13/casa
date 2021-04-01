@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe CaseContactDecorator do
-  describe "#duration_minutes" do
+RSpec.describe CaseContactDecorator, :disable_bullet do
+  describe "#duration_minutes", :disable_bullet do
     context "when duration_minutes is less than 60" do
       it "returns only minutes" do
         case_contact = create(:case_contact, duration_minutes: 30)
@@ -19,7 +19,7 @@ RSpec.describe CaseContactDecorator do
     end
   end
 
-  describe "#contact_made" do
+  describe "#contact_made", :disable_bullet do
     context "when contact_made is false" do
       it "returns No Contact Made" do
         case_contact = create(:case_contact, contact_made: false)
@@ -37,7 +37,7 @@ RSpec.describe CaseContactDecorator do
     end
   end
 
-  describe "#contact_types" do
+  describe "#contact_types", :disable_bullet do
     subject(:contact_types) { decorated_case_contact.contact_types }
 
     let(:case_contact) { build(:case_contact, contact_types: contact_types) }
@@ -75,7 +75,7 @@ RSpec.describe CaseContactDecorator do
     end
   end
 
-  describe "#medium_icon_classes" do
+  describe "#medium_icon_classes", :disable_bullet do
     context "when medium type is in-person" do
       it "returns the proper font-awesome classes" do
         case_contact = create(:case_contact, medium_type: "in-person").decorate
@@ -125,7 +125,7 @@ RSpec.describe CaseContactDecorator do
     end
   end
 
-  describe "#subheading" do
+  describe "#subheading", :disable_bullet do
     context "when all information is available" do
       it "returns a properly formatted string" do
         contact_group = create(:contact_type_group, name: "Group X")

@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "All-Casa Admin" do
+RSpec.describe "All-Casa Admin", :disable_bullet do
   let(:all_casa_admin) { create(:all_casa_admin) }
   let(:casa_org) { create(:casa_org) }
 
   before { sign_in all_casa_admin }
 
-  describe "POST /create" do
+  describe "POST /create", :disable_bullet do
     context "with valid parameters" do
       it "creates a new CASA admin for the organization" do
         expect {
@@ -21,7 +21,7 @@ RSpec.describe "All-Casa Admin" do
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH /update", :disable_bullet do
     let(:email) { "casa_admin@example.com" }
     let(:casa_admin) {
       CasaAdmin.new(

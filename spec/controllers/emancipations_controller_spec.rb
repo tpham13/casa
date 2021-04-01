@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe EmancipationsController, type: :controller do
+RSpec.describe EmancipationsController, :disable_bullet, type: :controller do
   # TODO improve these
   let(:organization) { create(:casa_org) }
   let(:volunteer) { create(:volunteer, :with_casa_cases, casa_org: organization) }
@@ -39,7 +39,7 @@ RSpec.describe EmancipationsController, type: :controller do
     end
   end
 
-  describe "check_item_action" do
+  describe "check_item_action", :disable_bullet do
     it "raises missing param error message" do
       casa_case = create :casa_case, casa_org: organization
       post :save, params: {casa_case_id: casa_case.id.to_s}

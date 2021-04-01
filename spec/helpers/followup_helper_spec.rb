@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe FollowupHelper do
-  describe "#followup_icon" do
+RSpec.describe FollowupHelper, :disable_bullet do
+  describe "#followup_icon", :disable_bullet do
     context "volunteer created followup" do
       it "is orange circle with an exclamation point" do
         creator = build_stubbed(:volunteer)

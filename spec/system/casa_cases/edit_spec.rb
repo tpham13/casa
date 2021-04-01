@@ -1,7 +1,7 @@
 require "rails_helper"
 require "stringio"
 
-RSpec.describe "casa_cases/edit", type: :system do
+RSpec.describe "casa_cases/edit", :disable_bullet, type: :system do
   context "when admin" do
     let(:organization) { create(:casa_org) }
     let(:admin) { create(:casa_admin, casa_org: organization) }
@@ -190,7 +190,7 @@ RSpec.describe "casa_cases/edit", type: :system do
       end
     end
 
-    describe "assign and unassign a volunteer to a case" do
+    describe "assign and unassign a volunteer to a case", :disable_bullet do
       let(:organization) { create(:casa_org) }
       let(:casa_case) { create(:casa_case, casa_org: organization) }
       let(:supervisor1) { create(:supervisor, casa_org: organization) }
@@ -280,7 +280,7 @@ RSpec.describe "casa_cases/edit", type: :system do
       end
     end
 
-    describe "case assigned to multiple volunteers" do
+    describe "case assigned to multiple volunteers", :disable_bullet do
       let(:organization) { create(:casa_org) }
       let(:supervisor) { create(:casa_admin, casa_org: organization) }
       let(:casa_case) { create(:casa_case, casa_org: organization) }

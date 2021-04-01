@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CaseContact, type: :model do
+RSpec.describe CaseContact, :disable_bullet, type: :model do
   context "validations" do
     it { is_expected.to validate_numericality_of(:miles_driven).is_less_than 10_000 }
     it { is_expected.to validate_numericality_of(:miles_driven).is_greater_than_or_equal_to 0 }
@@ -82,7 +82,7 @@ RSpec.describe CaseContact, type: :model do
     expect(case_contact.errors[:base]).to eq(["cannot edit case contacts created before the current quarter"])
   end
 
-  describe "#update_cleaning_contact_types" do
+  describe "#update_cleaning_contact_types", :disable_bullet do
     it "cleans up contact types before saving" do
       group = create(:contact_type_group)
       type1 = create(:contact_type, contact_type_group: group)
@@ -100,8 +100,8 @@ RSpec.describe CaseContact, type: :model do
     end
   end
 
-  describe "scopes" do
-    describe ".contact_type" do
+  describe "scopes", :disable_bullet do
+    describe ".contact_type", :disable_bullet do
       it "returns case contacts filtered by contact type id" do
         group = create(:contact_type_group)
         youth_type = create(:contact_type, name: "Youth", contact_type_group: group)
@@ -119,7 +119,7 @@ RSpec.describe CaseContact, type: :model do
       end
     end
 
-    describe ".contact_made" do
+    describe ".contact_made", :disable_bullet do
       context "with both option" do
         it "returns case contacts filtered by contact made option" do
           case_contact_1 = create(:case_contact, contact_made: false)
@@ -148,7 +148,7 @@ RSpec.describe CaseContact, type: :model do
       end
     end
 
-    describe ".has_transitioned" do
+    describe ".has_transitioned", :disable_bullet do
       let(:casa_case_1) { create(:casa_case, transition_aged_youth: true) }
       let(:casa_case_2) { create(:casa_case, transition_aged_youth: false) }
 
@@ -180,7 +180,7 @@ RSpec.describe CaseContact, type: :model do
       end
     end
 
-    describe ".want_driving_reimbursement" do
+    describe ".want_driving_reimbursement", :disable_bullet do
       context "with both option" do
         it "returns case contacts filtered by contact made option" do
           case_contact_1 = create(:case_contact, {miles_driven: 50, want_driving_reimbursement: true})
@@ -210,7 +210,7 @@ RSpec.describe CaseContact, type: :model do
     end
   end
 
-  describe "#contact_groups_with_types" do
+  describe "#contact_groups_with_types", :disable_bullet do
     it "returns the groups with their associated case types" do
       group1 = create(:contact_type_group, name: "Family")
       group2 = create(:contact_type_group, name: "Health")
@@ -232,7 +232,7 @@ RSpec.describe CaseContact, type: :model do
     end
   end
 
-  describe "#requested_followup" do
+  describe "#requested_followup", :disable_bullet do
     context "no followup exists in requested status" do
       it "returns nil" do
         case_contact = create(:case_contact)

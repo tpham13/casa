@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe User, type: :model do
+RSpec.describe User, :disable_bullet, type: :model do
   it { is_expected.to belong_to(:casa_org) }
 
   it { is_expected.to have_many(:case_assignments) }
@@ -17,7 +17,7 @@ RSpec.describe User, type: :model do
     expect(user.valid?).to be false
   end
 
-  describe "#case_contacts_for" do
+  describe "#case_contacts_for", :disable_bullet do
     let(:volunteer) { create(:volunteer, :with_casa_cases) }
     let(:case_of_interest) { volunteer.casa_cases.first }
     let!(:contact_a) { create(:case_contact, creator: volunteer, casa_case: case_of_interest) }
@@ -60,8 +60,8 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "supervisors" do
-    describe "#volunteers_serving_transition_aged_youth" do
+  describe "supervisors", :disable_bullet do
+    describe "#volunteers_serving_transition_aged_youth", :disable_bullet do
       let(:casa_org) { create(:casa_org) }
       let(:supervisor) { create(:supervisor, casa_org: casa_org) }
 
@@ -89,7 +89,7 @@ RSpec.describe User, type: :model do
       end
     end
 
-    describe "#no_contact_for_two_weeks" do
+    describe "#no_contact_for_two_weeks", :disable_bullet do
       let(:supervisor) { create(:supervisor) }
 
       it "returns zero for a volunteer that has successfully made contact in at least one contact_case within the last 2 weeks" do
@@ -136,7 +136,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#active_for_authentication?" do
+  describe "#active_for_authentication?", :disable_bullet do
     it "is false when the user is inactive" do
       user = create(:volunteer, :inactive)
       expect(user).not_to be_active_for_authentication
@@ -152,7 +152,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#actively_assigned_and_active_cases" do
+  describe "#actively_assigned_and_active_cases", :disable_bullet do
     let(:user) { create(:volunteer) }
     let!(:active_case_assignment_with_active_case) do
       create(:case_assignment, casa_case: create(:casa_case, casa_org: user.casa_org), volunteer: user)
@@ -172,7 +172,7 @@ RSpec.describe User, type: :model do
     end
   end
 
-  describe "#serving_transition_aged_youth?" do
+  describe "#serving_transition_aged_youth?", :disable_bullet do
     let(:user) { create(:volunteer) }
     let!(:case_assignment_without_transition_aged_youth) do
       create(:case_assignment, casa_case: create(:casa_case, casa_org: user.casa_org, transition_aged_youth: false), volunteer: user)

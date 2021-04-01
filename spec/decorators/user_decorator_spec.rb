@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe UserDecorator do
-  describe "#status" do
+RSpec.describe UserDecorator, :disable_bullet do
+  describe "#status", :disable_bullet do
     context "when user role is inactive" do
       it "returns Inactive" do
         volunteer = build(:volunteer, :inactive)

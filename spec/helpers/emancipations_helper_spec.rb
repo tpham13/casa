@@ -3,17 +3,17 @@ require "rails_helper"
 # Specs in this file have access to a helper object that includes
 # the EmancipationsHelper. For example:
 #
-# describe EmancipationsHelper do
-#   describe "string concat" do
+# describe EmancipationsHelper, :disable_bullet do
+#   describe "string concat", :disable_bullet do
 #     it "concats two strings with spaces" do
 #       expect(helper.concat_strings("this","that")).to eq("this that")
 #     end
 #   end
 # end
-RSpec.describe EmancipationsHelper, type: :helper do
+RSpec.describe EmancipationsHelper, :disable_bullet, type: :helper do
   let(:casa_case) { create(:casa_case, transition_aged_youth: true) }
 
-  describe "#emancipation_category_checkbox_checked" do
+  describe "#emancipation_category_checkbox_checked", :disable_bullet do
     let(:emancipation_category) { create(:emancipation_category, name: "unique name") }
 
     it "returns \"checked\" when passed an associated casa case and emancipation category" do
@@ -26,7 +26,7 @@ RSpec.describe EmancipationsHelper, type: :helper do
     end
   end
 
-  describe "#emancipation_category_collapse_hidden" do
+  describe "#emancipation_category_collapse_hidden", :disable_bullet do
     let(:emancipation_category) { create(:emancipation_category, name: "another unique name") }
 
     it "returns nil when passed an associated casa case and emancipation category" do
@@ -39,7 +39,7 @@ RSpec.describe EmancipationsHelper, type: :helper do
     end
   end
 
-  describe "#emancipation_category_collapse_icon" do
+  describe "#emancipation_category_collapse_icon", :disable_bullet do
     let(:emancipation_category) { create(:emancipation_category, name: "another unique name") }
 
     it "returns nil when passed an associated casa case and emancipation category" do
@@ -52,7 +52,7 @@ RSpec.describe EmancipationsHelper, type: :helper do
     end
   end
 
-  describe "#emancipation_option_checkbox_checked" do
+  describe "#emancipation_option_checkbox_checked", :disable_bullet do
     let(:emancipation_option) { create(:emancipation_option) }
 
     it "returns \"checked\" when passed an associated casa case and emancipation option" do

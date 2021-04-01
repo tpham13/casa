@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CaseAssignment, type: :model do
+RSpec.describe CaseAssignment, :disable_bullet, type: :model do
   let(:casa_org_1) { create(:casa_org) }
   let(:casa_case_1) { create(:casa_case, casa_org: casa_org_1) }
   let(:volunteer_1) { create(:volunteer, casa_org: casa_org_1) }
@@ -50,7 +50,7 @@ RSpec.describe CaseAssignment, type: :model do
     expect { volunteer_1.update(casa_org: casa_org_2) }.to change(case_assignment, :valid?).to false
   end
 
-  describe ".active" do
+  describe ".active", :disable_bullet do
     it "only includes active case assignments" do
       casa_case = create(:casa_case)
       case_assignments = 2.times.map { create(:case_assignment, casa_case: casa_case, volunteer: create(:volunteer, casa_org: casa_case.casa_org)) }

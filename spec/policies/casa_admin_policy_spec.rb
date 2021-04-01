@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CasaAdminPolicy do
+RSpec.describe CasaAdminPolicy, :disable_bullet do
   subject { described_class }
 
   let(:organization) { create(:casa_org) }

@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe "/emancipation_checklists", type: :request do
-  describe "GET /index" do
+RSpec.describe "/emancipation_checklists", :disable_bullet, type: :request do
+  describe "GET /index", :disable_bullet do
     before { sign_in volunteer }
 
     context "when viewing the page as a volunteer" do

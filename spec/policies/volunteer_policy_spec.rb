@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe VolunteerPolicy do
+RSpec.describe VolunteerPolicy, :disable_bullet do
   subject { described_class }
 
   let(:admin) { build_stubbed(:casa_admin) }

@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "supervisors/index", type: :system do
+RSpec.describe "supervisors/index", :disable_bullet, type: :system do
   let(:organization) { create(:casa_org) }
   let(:user) { create(:supervisor, casa_org: organization) }
 
@@ -34,7 +34,7 @@ RSpec.describe "supervisors/index", type: :system do
     expect(page).to have_text("Editing Supervisor")
   end
 
-  describe "can sort table columns" do
+  describe "can sort table columns", :disable_bullet do
     def verify_numeric_sort(column)
       expect(page).to have_selector("tr:nth-child(1)", text: "11")
 

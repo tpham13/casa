@@ -1,9 +1,9 @@
 require "rails_helper"
 
-RSpec.describe CasaCasePolicy::Scope do
+RSpec.describe CasaCasePolicy::Scope, :disable_bullet do
   let(:organization) { create(:casa_org) }
 
-  describe "#resolve" do
+  describe "#resolve", :disable_bullet do
     it "returns all CasaCases when user is admin" do
       user = create(:casa_admin, casa_org: organization)
       all_casa_cases = create_list(:casa_case, 2, casa_org: organization)

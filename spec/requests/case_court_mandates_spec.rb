@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/case_court_mandates", type: :request do
+RSpec.describe "/case_court_mandates", :disable_bullet, type: :request do
   subject(:delete_request) { delete case_court_mandate_url(case_court_mandate) }
   let(:case_court_mandate) { build(:case_court_mandate) }
 
@@ -10,10 +10,10 @@ RSpec.describe "/case_court_mandates", type: :request do
     casa_case.case_court_mandates << case_court_mandate
   end
 
-  describe "as an admin" do
+  describe "as an admin", :disable_bullet do
     let(:user) { create(:casa_admin) }
 
-    describe "DELETE /destroy" do
+    describe "DELETE /destroy", :disable_bullet do
       it "renders a successful response" do
         delete_request
         expect(response).to be_successful
@@ -25,10 +25,10 @@ RSpec.describe "/case_court_mandates", type: :request do
     end
   end
 
-  describe "as a supervisor" do
+  describe "as a supervisor", :disable_bullet do
     let(:user) { create(:supervisor) }
 
-    describe "DELETE /destroy" do
+    describe "DELETE /destroy", :disable_bullet do
       it "renders a successful response" do
         delete_request
         expect(response).to be_successful
@@ -40,10 +40,10 @@ RSpec.describe "/case_court_mandates", type: :request do
     end
   end
 
-  describe "as a volunteer" do
+  describe "as a volunteer", :disable_bullet do
     let(:user) { create(:volunteer) }
 
-    describe "DELETE /destroy" do
+    describe "DELETE /destroy", :disable_bullet do
       it "renders a successful response" do
         delete_request
         # CASA will attempt to redirect to another page

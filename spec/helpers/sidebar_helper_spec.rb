@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe SidebarHelper do
-  describe "#menu_item" do
+RSpec.describe SidebarHelper, :disable_bullet do
+  describe "#menu_item", :disable_bullet do
     it "does not render sidebar menu item when not visible" do
       menu_item = helper.menu_item(label: "Supervisors", path: supervisors_path, visible: false)
 
@@ -17,7 +17,7 @@ RSpec.describe SidebarHelper do
       expect(menu_item).to match ">Supervisors</a>"
     end
 
-    describe "menu item active state" do
+    describe "menu item active state", :disable_bullet do
       context "when current page does not match the menu item path" do
         it "renders sidebar menu item as an inactive link" do
           allow(helper).to receive(:action_name).and_return("index")
@@ -42,7 +42,7 @@ RSpec.describe SidebarHelper do
     end
   end
 
-  describe "#cases_index_title" do
+  describe "#cases_index_title", :disable_bullet do
     it "returns 'My Cases' when logged in as a volunteer" do
       volunteer = build :volunteer
 

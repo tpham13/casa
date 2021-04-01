@@ -1,11 +1,11 @@
 require "rails_helper"
 
-RSpec.describe "/all_casa_admins", type: :request do
+RSpec.describe "/all_casa_admins", :disable_bullet, type: :request do
   let(:admin) { create(:all_casa_admin) }
 
   before(:each) { sign_in admin }
 
-  describe "GET /edit" do
+  describe "GET /edit", :disable_bullet do
     context "with a all_casa_admin signed in" do
       it "renders a successful response" do
         get edit_all_casa_admins_path
@@ -15,7 +15,7 @@ RSpec.describe "/all_casa_admins", type: :request do
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH /update", :disable_bullet do
     context "with valid parameters" do
       it "updates the all_casa_admin" do
         patch all_casa_admins_path, params: {all_casa_admin: {email: "newemail@example.com"}}
@@ -36,7 +36,7 @@ RSpec.describe "/all_casa_admins", type: :request do
     end
   end
 
-  describe "PATCH /update_password" do
+  describe "PATCH /update_password", :disable_bullet do
     context "with valid parameters" do
       let(:params) do
         {

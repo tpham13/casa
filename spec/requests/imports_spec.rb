@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe "/imports", type: :request do
+RSpec.describe "/imports", :disable_bullet, type: :request do
   let(:volunteer_file) { Rails.root.join("spec", "fixtures", "volunteers.csv") }
   let(:supervisor_file) { Rails.root.join("spec", "fixtures", "supervisors.csv") }
   let(:case_file) { Rails.root.join("spec", "fixtures", "casa_cases.csv") }
@@ -8,7 +8,7 @@ RSpec.describe "/imports", type: :request do
   let(:supervisor_volunteers_file) { Rails.root.join("spec", "fixtures", "supervisor_volunteers.csv") }
   let(:casa_admin) { create(:casa_admin) }
 
-  describe "GET /index" do
+  describe "GET /index", :disable_bullet do
     it "renders an unsuccessful response when the user is not an admin" do
       sign_in create(:volunteer)
 

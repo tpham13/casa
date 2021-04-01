@@ -1,12 +1,12 @@
 require "rails_helper"
 
-RSpec.describe "/case_assignments", type: :request do
+RSpec.describe "/case_assignments", :disable_bullet, type: :request do
   let(:casa_org) { create(:casa_org) }
   let(:admin) { create(:casa_admin, casa_org: casa_org) }
   let(:volunteer) { create(:volunteer, casa_org: casa_org) }
   let(:casa_case) { create(:casa_case, casa_org: casa_org) }
 
-  describe "POST /create" do
+  describe "POST /create", :disable_bullet do
     context "when the volunteer has been previously assigned to the casa_case" do
       it "reassigns the volunteer to the casa_case" do
         create(:case_assignment, active: false, volunteer: volunteer, casa_case: casa_case)
@@ -75,7 +75,7 @@ RSpec.describe "/case_assignments", type: :request do
     end
   end
 
-  describe "DELETE /destroy" do
+  describe "DELETE /destroy", :disable_bullet do
     context "when the case assignment parent is a volunteer" do
       it "destroys the case assignment from the volunteer" do
         assignment = create(:case_assignment, volunteer: volunteer, casa_case: casa_case)
@@ -121,7 +121,7 @@ RSpec.describe "/case_assignments", type: :request do
     end
   end
 
-  describe "PATCH /unassign" do
+  describe "PATCH /unassign", :disable_bullet do
     context "when redirect_to_path is volunteer" do
       it "deactivates the case assignment and redirects to edit volunteer" do
         assignment = create(:case_assignment, volunteer: volunteer)

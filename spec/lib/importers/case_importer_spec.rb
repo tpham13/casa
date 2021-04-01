@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CaseImporter do
+RSpec.describe CaseImporter, :disable_bullet do
   subject(:case_importer) { CaseImporter.new(import_file_path, casa_org_id) }
 
   let(:casa_org_id) { import_user.casa_org.id }
@@ -13,7 +13,7 @@ RSpec.describe CaseImporter do
     end
   end
 
-  describe "#import_cases" do
+  describe "#import_cases", :disable_bullet do
     it "imports cases and associates volunteers with them" do
       expect { case_importer.import_cases }.to change(CasaCase, :count).by(3)
 

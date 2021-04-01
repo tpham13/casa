@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CasaOrg, type: :model do
+RSpec.describe CasaOrg, :disable_bullet, type: :model do
   it { is_expected.to validate_presence_of(:name) }
 
   it "has unique name" do
@@ -9,7 +9,7 @@ RSpec.describe CasaOrg, type: :model do
     expect(new_org.valid?).to be false
   end
 
-  describe "Attachment" do
+  describe "Attachment", :disable_bullet do
     it "is valid" do
       aggregate_failures do
         expect(subject.org_logo).to eq(Pathname.new("#{Rails.root}/public/logo.jpeg"))

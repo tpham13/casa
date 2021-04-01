@@ -1,7 +1,7 @@
 require "rails_helper"
 
-RSpec.describe CaseContactsHelper do
-  describe "#render_back_link" do
+RSpec.describe CaseContactsHelper, :disable_bullet do
+  describe "#render_back_link", :disable_bullet do
     it "renders back link to home page when user is a volunteer" do
       current_user = create(:volunteer)
       casa_case = create(:casa_case)
@@ -34,7 +34,7 @@ RSpec.describe CaseContactsHelper do
     end
   end
 
-  describe "#duration_minutes" do
+  describe "#duration_minutes", :disable_bullet do
     it "returns remainder if duration_minutes is set" do
       case_contact = build(:case_contact, duration_minutes: 80)
       expect(helper.duration_minutes(case_contact)).to eq(20)
@@ -51,7 +51,7 @@ RSpec.describe CaseContactsHelper do
     end
   end
 
-  describe "#duration_hours" do
+  describe "#duration_hours", :disable_bullet do
     it "returns minutes if duration_minutes is set" do
       case_contact = build(:case_contact, duration_minutes: 80)
       expect(helper.duration_hours(case_contact)).to eq(1)
@@ -68,7 +68,7 @@ RSpec.describe CaseContactsHelper do
     end
   end
 
-  describe "#set_contact_made_false" do
+  describe "#set_contact_made_false", :disable_bullet do
     it "returns false if contact_made is true" do
       case_contact = create(:case_contact, contact_made: true)
       expect(helper.set_contact_made_false(case_contact)).to eq(false)
