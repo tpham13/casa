@@ -1,6 +1,6 @@
 require "rails_helper"
 
-RSpec.describe CasaCasesController, type: :controller do
+RSpec.describe CasaCasesController, :disable_bullet, type: :controller do
   let(:organization) { create(:casa_org) }
   let(:volunteer) { create(:volunteer, :with_cases_and_contacts, casa_org: organization) }
 
