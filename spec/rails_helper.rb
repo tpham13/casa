@@ -56,7 +56,7 @@ RSpec.configure do |config|
 
   config.disable_monkey_patching!
 
-  if Bullet.enable?
+  if Bullet.enable? && !ENV["SKIP_BULLET"]
     config.before do
       Bullet.start_request
     end
