@@ -56,13 +56,15 @@ RSpec.configure do |config|
 
   config.disable_monkey_patching!
 
-  if Bullet.enable? && !ENV["SKIP_BULLET"]
-    config.before do
-      Bullet.start_request
-    end
-    config.after do
-      Bullet.perform_out_of_channel_notifications if Bullet.notification?
-      Bullet.end_request
+  if Bullet.enable?
+    unless ENV["SKIP_BULLET"]
+      config.before do
+        Bullet.start_request
+      end
+      config.after do
+        Bullet.perform_out_of_channel_notifications if Bullet.notification?
+        Bullet.end_request
+      end
     end
     config.around :each, :disable_bullet do |example|
       Bullet.raise = false
